@@ -1,7 +1,6 @@
 package com.example.wallet
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -11,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.wallet.ui.home.BalanceUiState
 import com.example.wallet.ui.home.HomeScreen
 import com.example.wallet.ui.home.HomeViewModel
 import com.example.wallet.ui.theme.ScreenBackgroundColor
@@ -35,9 +35,9 @@ class HomeActivity : ComponentActivity() {
                 ) {
                     lifecycleScope.launch {
                         repeatOnLifecycle(Lifecycle.State.STARTED) {
-                            viewModel.updateBalance(10.0f)
+                            viewModel.updateBalance(BalanceUiState(10.0f))
                             delay(5000)
-                            viewModel.updateBalance(50.0f)
+                            viewModel.updateBalance(BalanceUiState(50.0f))
                         }
                     }
                     HomeScreen(viewModel = viewModel)
